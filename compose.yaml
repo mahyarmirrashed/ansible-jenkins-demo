@@ -2,6 +2,7 @@ services:
   commander:
     build:
       context: ./
+    user: root
     init: true
     command: ["sleep", "infinity"]
 
@@ -9,5 +10,6 @@ services:
     image: ubuntu:22.04
     deploy:
       replicas: 3
+    user: root
     init: true
     command: ["sleep", "infinity"]
