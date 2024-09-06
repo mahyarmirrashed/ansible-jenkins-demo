@@ -2,8 +2,6 @@ services:
   commander:
     build:
       context: ./
-    volumes:
-      - ./src:/home/eva:ro
     user: root
     init: true
     command: ["sleep", "infinity"]
