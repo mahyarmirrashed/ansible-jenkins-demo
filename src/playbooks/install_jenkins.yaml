@@ -2,11 +2,13 @@
 - name: Set up jenkins commander
   hosts: commander
   roles:
-    - debug
-    - jenkins_commander
+    - role: debug
+    - role: jenkins_commander
 
 - name: Set up jenkins agents
   hosts: agents
   roles:
-    - debug
-    - jenkins_agent
+    - role: debug
+    - role: jenkins_agent
+      vars:
+        jenkins_admin_password: "{{ hostvars['ansible-jenkins-commander-1'].jenkins_admin_password }}"
