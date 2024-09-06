@@ -1,0 +1,10 @@
+services:
+  commander:
+    image: ubuntu:22.04
+    command: ["sleep", "infinity"]
+
+  agents:
+    image: ubuntu:22.04
+    deploy:
+      replicas: 3
+    command: ["sleep", "infinity"]
