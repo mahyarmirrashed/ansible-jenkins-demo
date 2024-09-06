@@ -19,6 +19,5 @@
     -labels "agent" \
     -executors 1 \
     -username admin \
-    -password "{{ jenkins_admin_password }}"
-    -tunnel commander:8081
-    > /root/swarm-client.log 2>&1 &
+    -password "{{ jenkins_admin_password }}" \
+    -tunnel commander:8081 > /root/swarm-client.log 2>&1 & echo $! > /var/run/jenkins.pid
