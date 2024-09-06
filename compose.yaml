@@ -1,6 +1,7 @@
 services:
   commander:
-    image: ubuntu:22.04
+    build:
+      context: ./
     init: true
     command: ["sleep", "infinity"]
 
