@@ -1,12 +1,12 @@
 ---
-- name: Confirm connection to Commander and Agents
+- name: Confirm connection to commander and agents
   hosts: all
   tasks:
-    - name: Echo a unique message for each container
+    - name: Get ip address
       shell: |
-        echo "Hello from {{ inventory_hostname }}!"
-      register: result
+        getent ahostsv4 {{ inventory_hostname }} | grep STREAM | head -n 1 | awk '{print $1}'
+      register: internal_ip_command
 
-    - name: Print the message output
+    - name: Say hello
       debug:
-        var: result.stdout
+        msg: "The internal IP address of {{ inventory_hostname }} is {{ internal_ip_command.stdout }}"
