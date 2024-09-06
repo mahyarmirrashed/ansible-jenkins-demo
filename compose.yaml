@@ -15,4 +15,4 @@ services:
     deploy:
       replicas: 3
     init: true
-    command: ["sleep", "infinity"]
+    command: ["/usr/sbin/sshd", "-D"]
