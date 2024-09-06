@@ -1,7 +1,8 @@
 ---
 - name: Install dependencies
   ansible.builtin.apt:
-    name: openjdk-11-jdk
+    name:
+      - openjdk-17-jdk
     state: present
     update_cache: yes
 
