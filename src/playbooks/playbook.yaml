@@ -1,0 +1,12 @@
+---
+- name: Confirm connection to Commander and Agents
+  hosts: all
+  tasks:
+    - name: Echo a unique message for each container
+      shell: |
+        echo "Hello from {{ inventory_hostname }}!"
+      register: result
+
+    - name: Print the message output
+      debug:
+        var: result.stdout
