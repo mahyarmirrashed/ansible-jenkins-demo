@@ -1,9 +1,3 @@
 FROM ubuntu:22.04
 
-RUN useradd -m -s /bin/bash agent
-
-USER agent
-
-ENV PATH="${PATH}:/home/agent/.local/bin"
-
-WORKDIR /home/agent
+WORKDIR /root

@@ -12,6 +12,5 @@ services:
       dockerfile: Dockerfile.agent
     deploy:
       replicas: 3
-    user: root
     init: true
     command: ["sleep", "infinity"]
