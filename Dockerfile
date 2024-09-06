@@ -16,6 +16,6 @@ RUN python3 -m pip install --no-cache-dir --user \
   ansible==10.3.* argcomplete==3.5.* && \
   activate-global-python-argcomplete --user
 
-COPY src/* /home/eva/
+COPY src/ /home/eva/
 
 WORKDIR /home/eva
