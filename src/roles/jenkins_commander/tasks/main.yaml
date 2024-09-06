@@ -42,7 +42,7 @@
   command: cat /root/.jenkins/secrets/initialAdminPassword
   register: jenkins_admin_password
 
-- name: Install jenkins plugins (Swarm plugin)
+- name: Install jenkins plugins
   jenkins_plugin:
     name: swarm
     url: http://localhost:8080
