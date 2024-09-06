@@ -17,4 +17,8 @@
     -master http://commander:8080 \
     -name "{{ inventory_hostname }}" \
     -labels "agent" \
-    -executors 1 > /root/swarm-client.log 2>&1 &
+    -executors 1 \
+    -username admin \
+    -password "{{ jenkins_admin_password }}"
+    -tunnel commander:8081
+    > /root/swarm-client.log 2>&1 &
