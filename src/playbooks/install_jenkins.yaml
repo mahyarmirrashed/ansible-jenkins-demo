@@ -1,10 +1,12 @@
 ---
-- hosts: commander
+- name: Set up jenkins commander
+  hosts: commander
   roles:
     - debug
     - jenkins_commander
 
-- hosts: agents
+- name: Set up jenkins agents
+  hosts: agents
   roles:
     - debug
     - jenkins_agent
