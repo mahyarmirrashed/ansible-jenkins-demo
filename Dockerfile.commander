@@ -5,16 +5,16 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m -s /bin/bash eva
+RUN useradd -m -s /bin/bash commander
 
-USER eva
+USER commander
 
-ENV PATH="${PATH}:/home/eva/.local/bin"
+ENV PATH="${PATH}:/home/commander/.local/bin"
 
 RUN python3 -m pip install --no-cache-dir --user \
   ansible==10.3.* argcomplete==3.5.* && \
   activate-global-python-argcomplete --user
 
-COPY src/ /home/eva/
+COPY src/ /home/commander/
 
-WORKDIR /home/eva
+WORKDIR /home/commander
