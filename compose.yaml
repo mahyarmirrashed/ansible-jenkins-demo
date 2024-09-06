@@ -3,6 +3,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.commander
+    ports:
+      - 8080:8080
     init: true
     command: ["sleep", "infinity"]
 
