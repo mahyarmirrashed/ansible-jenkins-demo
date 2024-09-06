@@ -6,7 +6,6 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -s /bin/bash eva && \
-  mkdir -p /home/eva/src && \
   chown -R eva:eva /home/eva
 
 USER eva
