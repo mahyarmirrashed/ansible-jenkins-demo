@@ -38,13 +38,13 @@
     'status' in jenkins_service_status and
     jenkins_service_status.status == 200
 
-- name: Read jenkins initial admin password
-  command: cat /root/.jenkins/secrets/initialAdminPassword
-  register: jenkins_admin_password
+- name: Set Jenkins admin password as a global fact
+  set_fact:
+    jenkins_admin_password: "{{ lookup('file', '/root/.jenkins/secrets/initialAdminPassword') }}"
 
 - name: Install jenkins plugins
   jenkins_plugin:
     name: swarm
     url: http://localhost:8080
     url_username: admin
-    url_password: "{{ jenkins_admin_password.stdout }}"
+    url_password: "{{ jenkins_admin_password }}"
