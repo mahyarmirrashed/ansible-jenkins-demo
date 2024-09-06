@@ -8,7 +8,7 @@
 
 - name: Download jenkins swarm client
   get_url:
-    url: https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.25/swarm-client-3.25.jar
+    url: https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.47/swarm-client-3.47.jar
     dest: /root/swarm-client.jar
 
 - name: Register agent with jenkins master
