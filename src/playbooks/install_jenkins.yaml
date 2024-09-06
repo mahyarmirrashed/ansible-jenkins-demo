@@ -1,8 +1,10 @@
 ---
 - hosts: commander
   roles:
+    - debug
     - jenkins_commander
 
 - hosts: agents
   roles:
+    - debug
     - jenkins_agent

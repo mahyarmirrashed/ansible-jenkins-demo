@@ -1,13 +1,4 @@
 ---
-- name: Get ip address
-  shell: |
-    getent ahostsv4 {{ inventory_hostname }} | grep STREAM | head -n 1 | awk '{print $1}'
-  register: internal_ip_command
-
-- name: Debugging message
-  debug:
-    msg: "Setting up {{ inventory_hostname }} @ {{ internal_ip_command.stdout }}"
-
 - name: Install dependencies
   ansible.builtin.apt:
     name:
