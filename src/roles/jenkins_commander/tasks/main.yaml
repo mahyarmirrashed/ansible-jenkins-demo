@@ -26,8 +26,11 @@
 
 - name: Start jenkins in the background (no systemd)
   shell: |
-    nohup java -jar /usr/share/java/jenkins.war \
-    --httpListenAddress=0.0.0.0 > /var/log/jenkins.log 2>&1 &
+    nohup java \
+    -Djenkins.model.Jenkins.slaveAgentPort=8081 \
+    -jar /usr/share/java/jenkins.war \
+    --httpListenAddress=0.0.0.0 \
+    --httpPort=8080 > /var/log/jenkins.log 2>&1 & echo $! > /var/run/jenkins.pid
 
 - name: Wait for Jenkins to be fully available via HTTP API
   uri:
