@@ -2,11 +2,14 @@ services:
   commander:
     build:
       context: ./
+      dockerfile: Dockerfile.commander
     init: true
     command: ["sleep", "infinity"]
 
   agents:
-    image: ubuntu:22.04
+    build:
+      context: ./
+      dockerfile: Dockerfile.agent
     deploy:
       replicas: 3
     user: root
