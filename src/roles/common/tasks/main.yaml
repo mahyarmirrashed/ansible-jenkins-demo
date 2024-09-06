@@ -1,0 +1,14 @@
+---
+- name: Update Apt package list
+  apt:
+    update_cache: yes
+
+- name: Install required Jenkins dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - openjdk-11-jdk
+    - wget
+    - curl
+    - gnupg2

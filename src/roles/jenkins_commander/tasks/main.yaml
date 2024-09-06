@@ -1,0 +1,50 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - openjdk-11-jdk
+      - gnupg2
+      - curl
+    state: present
+    update_cache: yes
+
+- name: Add jenkins repository key
+  ansible.builtin.get_url:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    dest: /usr/share/keyrings/jenkins-keyring.asc
+
+- name: Add jenkins apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/"
+    state: present
+
+- name: Install jenkins
+  ansible.builtin.apt:
+    name: jenkins
+    state: present
+    update_cache: yes
+
+- name: Start jenkins in the background (no systemd)
+  shell: |
+    nohup java -jar /usr/share/java/jenkins.war \
+    --httpListenAddress=0.0.0.0 > /var/log/jenkins.log 2>&1 &
+
+- name: Wait for Jenkins to be fully available via HTTP API
+  uri:
+    url: http://localhost:8080/login
+    status_code: 200
+  register: jenkins_service_status
+  until: >
+    'status' in jenkins_service_status and
+    jenkins_service_status.status == 200
+
+- name: Read jenkins initial admin password
+  command: cat /root/.jenkins/secrets/initialAdminPassword
+  register: jenkins_admin_password
+
+- name: Install jenkins plugins (Swarm plugin)
+  jenkins_plugin:
+    name: swarm
+    url: http://localhost:8080
+    url_username: admin
+    url_password: "{{ jenkins_admin_password.stdout }}"
