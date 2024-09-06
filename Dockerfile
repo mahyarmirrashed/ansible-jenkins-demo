@@ -5,8 +5,7 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m -s /bin/bash eva && \
-  chown -R eva:eva /home/eva
+RUN useradd -m -s /bin/bash eva
 
 USER eva
 
