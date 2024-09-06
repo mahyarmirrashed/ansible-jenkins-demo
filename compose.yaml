@@ -2,7 +2,6 @@ services:
   commander:
     build:
       context: ./
-    user: root
     init: true
     command: ["sleep", "infinity"]
 
