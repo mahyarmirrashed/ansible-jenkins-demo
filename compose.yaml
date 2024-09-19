@@ -2,7 +2,7 @@ services:
   commander:
     build:
       context: ./
-      dockerfile: Dockerfile.commander
+      dockerfile: commander.Dockerfile
     ports:
       - 8080:8080
     init: true
@@ -11,7 +11,7 @@ services:
   agents:
     build:
       context: ./
-      dockerfile: Dockerfile.agent
+      dockerfile: agent.Dockerfile
     deploy:
       replicas: 3
     init: true
